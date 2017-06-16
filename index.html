@@ -117,6 +117,23 @@ limitations under the License.
 
     // Schedule the first frame.
     requestAnimationFrame(update);
+
+
+    onWindowResize();
+
+    window.addEventListener( 'resize', onWindowResize, false );
+
+        function onWindowResize(){
+
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+
+            renderer.setSize( window.innerWidth, window.innerHeight );
+
+        }
+
+
+
   </script>
 </body>
 </html>
