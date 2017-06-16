@@ -20,13 +20,8 @@ requirejs(["vendor/three.min"], function(THREE) {
   // Create a WebGL renderer, camera
   // and a scene
   const renderer = new THREE.WebGLRenderer();
-  const camera =
-      new THREE.PerspectiveCamera(
-          VIEW_ANGLE,
-          ASPECT,
-          NEAR,
-          FAR
-      );
+  const camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+
 
   const scene = new THREE.Scene();
 
@@ -52,66 +47,57 @@ requirejs(["vendor/three.min"], function(THREE) {
   // add to the scene
   scene.add(pointLight);
 
-  // create the sphere's material
-  const sphereMaterial =
-    new THREE.MeshLambertMaterial(
-      {
-        color: 0xCC0000
-      });
 
-  // Set up the sphere vars
-  const RADIUS = 50;
-  const SEGMENTS = 16;
-  const RINGS = 16;
 
-  // Create a new mesh with
-  // sphere geometry - we will cover
-  // the sphereMaterial next!
-  const sphere = new THREE.Mesh(
+  var mesh;
+  init();
+  animate();
 
-    new THREE.SphereGeometry(
-      RADIUS,
-      SEGMENTS,
-      RINGS),
 
-    sphereMaterial);
+  function init() {
+    camera.position.z = 400;
 
-  // Move the Sphere back in Z so we
-  // can see it.
-  sphere.position.z = -300;
+    var texture = new THREE.TextureLoader().load( 'assets/textures/crate.gif' );
+    var geometry = new THREE.BoxBufferGeometry( 200, 200, 200 );
+    var material = new THREE.MeshBasicMaterial( { map: texture } );
+    mesh = new THREE.Mesh( geometry, material );
+    scene.add( mesh );
 
-  // Finally, add the sphere to the scene.
-  scene.add(sphere);
+    renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( renderer.domElement );
+    //
+    window.addEventListener( 'resize', onWindowResize, false );
+  }
 
+
+/*
   function update () {
     // Draw!
     renderer.render(scene, camera);
 
     // Schedule the next frame.
     requestAnimationFrame(update);
-  }
+  }*/
 
   // Schedule the first frame.
-  requestAnimationFrame(update);
+  //requestAnimationFrame(update);
 
 
+  function animate() {
+    requestAnimationFrame( animate );
+    mesh.rotation.x += 0.005;
+    mesh.rotation.y += 0.01;
+    renderer.render( scene, camera );
+  }
+
+  function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+  }
 
 
-
-
-
-  onWindowResize();
-
-  window.addEventListener( 'resize', onWindowResize, false );
-
-      function onWindowResize(){
-
-          camera.aspect = window.innerWidth / window.innerHeight;
-          camera.updateProjectionMatrix();
-
-          renderer.setSize( window.innerWidth - 0, window.innerHeight - 0 );
-
-      }
 
 
 });
