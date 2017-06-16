@@ -4,3 +4,20 @@
     margin: 0;
     overflow:hidden;
   }
+
+  .container
+  {
+    position:relative;
+  }
+
+
+  .web3-menu
+  {
+    position:absolute;
+    top:20px;
+    bottom:30px;
+    background-color:white;
+    padding:30px;
+
+    height: 200px;
+  }

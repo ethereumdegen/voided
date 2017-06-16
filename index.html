@@ -23,9 +23,18 @@ limitations under the License.
 </head>
 <body>
   <div id="container"></div>
-
+  <script src="scripts/vendor/w3.js"></script>
    <script data-main="scripts/main" src="scripts/require.js"></script>
    <!-- This script runs main.js which then 'requires' js files in the correct order -->
+
+   <div w3-include-html="menus.html"></div>
+
+
+
+<script>
+w3.includeHTML();
+</script>
+
 
 </body>
 </html>
