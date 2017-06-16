@@ -20,6 +20,7 @@ limitations under the License.
     html, body {
       padding: 0;
       margin: 0;
+      overflow:hidden;
     }
   </style>
 </head>
@@ -128,7 +129,7 @@ limitations under the License.
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
 
-            renderer.setSize( window.innerWidth, window.innerHeight );
+            renderer.setSize( window.innerWidth - 25, window.innerHeight - 25 );
 
         }
 
