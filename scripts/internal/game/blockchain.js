@@ -1,4 +1,4 @@
-function initBlockchain()
+function initBlockchainWallet()
 {
   if(typeof web3.eth == 'undefined')
   {
@@ -10,6 +10,9 @@ function initBlockchain()
     var coinbase = web3.eth.coinbase;
       console.log(coinbase);
   //  var balance = web3.eth.getBalance(coinbase);
-
+      return web3.eth;
   }
+
+
+  return null;
 }
