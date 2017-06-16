@@ -1,4 +1,8 @@
- 
+
+requirejs(["vendor/three.min"], function(THREE) {
+
+
+
   // Set the scene size.
   const WIDTH = window.innerWidth;
   const HEIGHT = window.innerHeight;
@@ -91,6 +95,11 @@
   requestAnimationFrame(update);
 
 
+
+
+
+
+
   onWindowResize();
 
   window.addEventListener( 'resize', onWindowResize, false );
@@ -103,3 +112,6 @@
           renderer.setSize( window.innerWidth - 0, window.innerHeight - 0 );
 
       }
+
+
+});
