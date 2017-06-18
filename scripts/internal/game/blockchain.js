@@ -1,6 +1,6 @@
 function initBlockchainWallet()
 {
-  if(typeof web3.eth == 'undefined')
+  if(typeof web3 == 'undefined' || typeof web3.eth == 'undefined')
   {
     alert('Please install a web3 wallet such as Parity or Metamask to play voided.')
     console.error('web3 eth not found!');
